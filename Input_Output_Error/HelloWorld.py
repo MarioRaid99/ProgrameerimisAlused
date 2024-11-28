@@ -1,1 +1,6 @@
-print("Hello World!","Soovib Mario",sep="\n")
+from ExerciseHelloWorld import print_hello_world
+
+print_hello_world()
+
+
+
