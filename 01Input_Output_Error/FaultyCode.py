@@ -1,9 +1,5 @@
-# print("Hello World) # Jutumärgid lõpetamata
+first = "toa"
 
-# print("Hello World") # Taande viga
+uks = "uks"
 
-#if __name__ == '__main__':
-#print ("Hello World") # Taande viga, oodatud taane puudub
-
-#print (undeclared_variable + 18) #defineering puudub
-
+print("vanni", first, "kapi" + uks)
