@@ -1,25 +1,29 @@
-def cities_program():
-    while True:
-        """ Küsi linna nimi """
-        linn = input("Sisesta linna nimi (jäta tühjaks, et lõpetada): ")
+import math
 
-        """Kui sisestatud on tühi rida, katkestame tsükli"""
-        if linn == "":
-            break
+import pytest
 
-        """Küsi linnale pindala"""
-        try:
-            pindala = int(input(f"Mis on {linn} pindala? "))
-        except ValueError:
-            # Kuvame veateate, kui sisestatud pindala pole täisarv
-            print("Pindala peab olema täisarv. Palun proovi uuesti.")
-            continue
 
-        """Arvutame nime pikkuse ja pindala vahelise serinevuse"""
-        vahe = len(linn) - len(str(pindala))
+def solve_quadratic_equation(a, b, c):
 
-        """Kuvab linna andmed ja vahe"""
-        print(f"{linn} – Pindala {pindala} km2  - vahe {linn.upper()}({len(linn)}) – {pindala}({len(str(pindala))}) = {vahe}")
+    disc = b**2 - 4 * a * c
+    x1 = (-b - math.sqrt(disc)) / (2 * a)
+    x2 = (-b + math.sqrt(disc)) / (2 * a)
+    return x1, x2
 
-if __name__ == '__main__':
-    cities_program()
+
+def test_solve_quadratic_equation_two_float_solutions():
+    x1, x2 = solve_quadratic_equation(2, 3, -57)
+    assert (round(x1, 3), round(x2, 3)) == (-6.141, 4.641)
+
+def test_solve_quadratic_equation_one_float_solutions():
+    x1, x2 = solve_quadratic_equation(1, -2, 1)
+    assert (round(x1, 3), round(x2, 3)) == (1.000, 1.000)
+
+def test_solve_quadratic_equation_no_solution():
+    with pytest.raises(ZeroDivisionError) as e_info:
+        solve_quadratic_equation(1, -3, 1)
+        assert str(e_info.value) == "float division by zero"
+        assert e_info.tb.tb_lineno == 37
+
+def test_solve_quadratic_equation_zero_solution():
+    ...
